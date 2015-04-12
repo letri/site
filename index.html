@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+
+        <title>My Docs</title>
+
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">My Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
+        
+            <li><a href="#commands">Commands</a></li>
+        
+            <li><a href="#project-layout">Project layout</a></li>
+        
+    
+        <li class="main "><a href="#cac-cau-lenh-tao-bang">các câu lệnh tạo bảng</a></li>
+        
+    
+        <li class="main "><a href="#cac-cau-lenh-truy-van">các câu lệnh truy vấn</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
+<p>For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
+<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
+<li><code>mkdocs build</code> - Build the documentation site.</li>
+<li><code>mkdocs help</code> - Print this help message.</li>
+</ul>
+<h2 id="project-layout">Project layout</h2>
+<pre><code>mkdocs.yml    # The configuration file.
+docs/
+    index.md  # The documentation homepage.
+    ...       # Other markdown pages, images and other files.
+</code></pre>
+<h1 id="cac-cau-lenh-tao-bang">các câu lệnh tạo bảng</h1>
+<pre><code>
+create table topics(
+
+topic_id serial not null,
+topic_name character varying(10),
+constraint topic_pk primary key (topic_id)
+);
+
+create table questions (
+
+question_id serial not null,
+question character varying(100),
+wrong_ans character varying(50)[],
+true_ans character varying(50),
+
+topic_id integer not null,
+
+constraint questions_pkey primary key (question_id),
+constraint questions_topics_topic_fkey foreign key (topic_id) references topics (topic_id)
+);
+
+create table level_money (
+
+level_id serial not null,
+level_mon integer default 0,
+constraint level_money_pk primary key (level_id)
+);
+
+
+--table of user
+create table user_id (
+
+user_id serial not null,
+user_name character varying(50),
+time_play integer not null default 0,
+score integer not null default 10,
+constraint user_id_pkey primary key (user_id)
+)
+</code></pre>
+
+<h1 id="cac-cau-lenh-truy-van">các câu lệnh truy vấn</h1>
+<pre><code>insert into topics (topic_name) values
+('de'),
+('tb'),
+('kho'); 
+
+--nhap du lieu 100 cau hoi
+
+insert into questions (question,wrong_ans,true_ans,topic_id) values
+
+('1+1','{&quot;1&quot;,&quot;1&quot;,&quot;1&quot;}','2',1),
+('1+2','{&quot;2&quot;,&quot;2&quot;,&quot;2&quot;}','3',1),
+('1+3','{&quot;3&quot;,&quot;3&quot;,&quot;3&quot;}','4',1),
+('1+4','{&quot;4&quot;,&quot;4&quot;,&quot;4&quot;}','5',1),
+('1+5','{&quot;5&quot;,&quot;5&quot;,&quot;5&quot;}','6',1),
+('1+6','{&quot;6&quot;,&quot;6&quot;,&quot;6&quot;}','7',1),
+('1+7','{&quot;7&quot;,&quot;7&quot;,&quot;7&quot;}','8',1),
+('1+8','{&quot;8&quot;,&quot;8&quot;,&quot;8&quot;}','9',1),
+('1+9','{&quot;9&quot;,&quot;9&quot;,&quot;9&quot;}','10',1),
+('1+10','{&quot;10&quot;,&quot;10&quot;,&quot;10&quot;}','11',1),
+
+('1+11','{&quot;11&quot;,&quot;11&quot;,&quot;11&quot;}','12',1),
+('1+12','{&quot;12&quot;,&quot;12&quot;,&quot;12&quot;}','13',1),
+('1+13','{&quot;13&quot;,&quot;13&quot;,&quot;13&quot;}','14',1),
+('1+14','{&quot;14&quot;,&quot;14&quot;,&quot;14&quot;}','15',1),
+('1+15','{&quot;15&quot;,&quot;15&quot;,&quot;15&quot;}','16',1),
+('1+16','{&quot;16&quot;,&quot;16&quot;,&quot;16&quot;}','17',1),
+('1+17','{&quot;17&quot;,&quot;17&quot;,&quot;17&quot;}','18',1),
+('1+18','{&quot;18&quot;,&quot;18&quot;,&quot;18&quot;}','19',1),
+('1+19','{&quot;19&quot;,&quot;19&quot;,&quot;19&quot;}','20',1),
+('1+20','{&quot;20&quot;,&quot;20&quot;,&quot;20&quot;}','21',1),
+
+('1+21','{&quot;21&quot;,&quot;21&quot;,&quot;21&quot;}','22',1),
+('1+22','{&quot;22&quot;,&quot;22&quot;,&quot;22&quot;}','23',1),
+('1+23','{&quot;23&quot;,&quot;23&quot;,&quot;23&quot;}','24',1),
+('1+24','{&quot;24&quot;,&quot;24&quot;,&quot;24&quot;}','25',1),
+('1+25','{&quot;25&quot;,&quot;25&quot;,&quot;25&quot;}','26',1),
+('1+26','{&quot;26&quot;,&quot;26&quot;,&quot;26&quot;}','27',1),
+('1+27','{&quot;27&quot;,&quot;27&quot;,&quot;27&quot;}','28',1),
+('1+28','{&quot;28&quot;,&quot;28&quot;,&quot;28&quot;}','29',1),
+('1+29','{&quot;29&quot;,&quot;29&quot;,&quot;29&quot;}','30',1),
+('1+30','{&quot;30&quot;,&quot;30&quot;,&quot;30&quot;}','31',1),
+
+('1+31','{&quot;31&quot;,&quot;31&quot;,&quot;31&quot;}','32',2),
+('1+32','{&quot;32&quot;,&quot;32&quot;,&quot;32&quot;}','33',2),
+('1+33','{&quot;33&quot;,&quot;33&quot;,&quot;33&quot;}','34',2),
+('1+34','{&quot;34&quot;,&quot;34&quot;,&quot;34&quot;}','35',2),
+('1+35','{&quot;35&quot;,&quot;35&quot;,&quot;35&quot;}','36',2),
+('1+36','{&quot;36&quot;,&quot;36&quot;,&quot;36&quot;}','37',2),
+('1+37','{&quot;37&quot;,&quot;37&quot;,&quot;37&quot;}','38',2),
+('1+38','{&quot;38&quot;,&quot;38&quot;,&quot;38&quot;}','39',2),
+('1+39','{&quot;39&quot;,&quot;39&quot;,&quot;39&quot;}','40',2),
+('1+40','{&quot;40&quot;,&quot;40&quot;,&quot;40&quot;}','41',2),
+
+('1+41','{&quot;41&quot;,&quot;41&quot;,&quot;41&quot;}','42',2),
+('1+42','{&quot;42&quot;,&quot;42&quot;,&quot;42&quot;}','43',2),
+('1+43','{&quot;43&quot;,&quot;43&quot;,&quot;43&quot;}','44',2),
+('1+44','{&quot;44&quot;,&quot;44&quot;,&quot;44&quot;}','45',2),
+('1+45','{&quot;45&quot;,&quot;45&quot;,&quot;45&quot;}','46',2),
+('1+46','{&quot;46&quot;,&quot;46&quot;,&quot;46&quot;}','47',2),
+('1+47','{&quot;47&quot;,&quot;47&quot;,&quot;47&quot;}','48',2),
+('1+48','{&quot;48&quot;,&quot;48&quot;,&quot;48&quot;}','49',2),
+('1+49','{&quot;49&quot;,&quot;49&quot;,&quot;49&quot;}','50',2),
+('1+50','{&quot;50&quot;,&quot;50&quot;,&quot;50&quot;}','51',2),
+
+('1+51','{&quot;51&quot;,&quot;51&quot;,&quot;51&quot;}','52',2),
+('1+52','{&quot;52&quot;,&quot;52&quot;,&quot;52&quot;}','53',2),
+('1+53','{&quot;53&quot;,&quot;53&quot;,&quot;53&quot;}','54',2),
+('1+54','{&quot;54&quot;,&quot;54&quot;,&quot;54&quot;}','55',2),
+('1+55','{&quot;55&quot;,&quot;55&quot;,&quot;55&quot;}','56',2),
+('1+56','{&quot;56&quot;,&quot;56&quot;,&quot;56&quot;}','57',2),
+('1+57','{&quot;57&quot;,&quot;57&quot;,&quot;57&quot;}','58',2),
+('1+58','{&quot;58&quot;,&quot;58&quot;,&quot;58&quot;}','59',2),
+('1+59','{&quot;59&quot;,&quot;59&quot;,&quot;59&quot;}','60',2),
+('1+60','{&quot;60&quot;,&quot;60&quot;,&quot;60&quot;}','61',2),
+
+('1+61','{&quot;61&quot;,&quot;61&quot;,&quot;61&quot;}','62',3),
+('1+62','{&quot;62&quot;,&quot;62&quot;,&quot;62&quot;}','63',3),
+('1+63','{&quot;63&quot;,&quot;63&quot;,&quot;63&quot;}','64',3),
+('1+64','{&quot;64&quot;,&quot;64&quot;,&quot;64&quot;}','65',3),
+('1+65','{&quot;65&quot;,&quot;65&quot;,&quot;65&quot;}','66',3),
+('1+66','{&quot;66&quot;,&quot;66&quot;,&quot;66&quot;}','67',3),
+('1+67','{&quot;67&quot;,&quot;67&quot;,&quot;67&quot;}','68',3),
+('1+68','{&quot;68&quot;,&quot;68&quot;,&quot;68&quot;}','69',3),
+('1+69','{&quot;69&quot;,&quot;69&quot;,&quot;69&quot;}','70',3),
+('1+70','{&quot;70&quot;,&quot;70&quot;,&quot;70&quot;}','71',3),
+
+('1+71','{&quot;71&quot;,&quot;71&quot;,&quot;71&quot;}','72',3),
+('1+72','{&quot;72&quot;,&quot;72&quot;,&quot;72&quot;}','73',3),
+('1+73','{&quot;73&quot;,&quot;73&quot;,&quot;73&quot;}','74',3),
+('1+74','{&quot;74&quot;,&quot;74&quot;,&quot;74&quot;}','75',3),
+('1+75','{&quot;75&quot;,&quot;75&quot;,&quot;75&quot;}','76',3),
+('1+76','{&quot;76&quot;,&quot;76&quot;,&quot;76&quot;}','77',3),
+('1+77','{&quot;77&quot;,&quot;77&quot;,&quot;77&quot;}','78',3),
+('1+78','{&quot;78&quot;,&quot;78&quot;,&quot;78&quot;}','79',3),
+('1+79','{&quot;79&quot;,&quot;79&quot;,&quot;79&quot;}','80',3),
+('1+80','{&quot;80&quot;,&quot;80&quot;,&quot;80&quot;}','81',3),
+
+('1+81','{&quot;81&quot;,&quot;81&quot;,&quot;81&quot;}','82',3),
+('1+82','{&quot;82&quot;,&quot;82&quot;,&quot;82&quot;}','83',3),
+('1+83','{&quot;83&quot;,&quot;83&quot;,&quot;83&quot;}','84',3),
+('1+84','{&quot;84&quot;,&quot;84&quot;,&quot;84&quot;}','85',3),
+('1+85','{&quot;85&quot;,&quot;85&quot;,&quot;85&quot;}','86',3),
+('1+86','{&quot;86&quot;,&quot;86&quot;,&quot;86&quot;}','87',3),
+('1+87','{&quot;87&quot;,&quot;87&quot;,&quot;87&quot;}','88',3),
+('1+88','{&quot;88&quot;,&quot;88&quot;,&quot;88&quot;}','89',3),
+('1+89','{&quot;89&quot;,&quot;89&quot;,&quot;89&quot;}','90',3),
+('1+90','{&quot;90&quot;,&quot;90&quot;,&quot;90&quot;}','91',3),
+
+('1+91','{&quot;91&quot;,&quot;91&quot;,&quot;91&quot;}','92',1),
+('1+92','{&quot;92&quot;,&quot;92&quot;,&quot;92&quot;}','93',1),
+('1+93','{&quot;93&quot;,&quot;93&quot;,&quot;93&quot;}','94',1),
+('1+94','{&quot;94&quot;,&quot;94&quot;,&quot;94&quot;}','95',2),
+('1+95','{&quot;95&quot;,&quot;95&quot;,&quot;95&quot;}','96',2),
+('1+96','{&quot;96&quot;,&quot;96&quot;,&quot;96&quot;}','97',2),
+('1+97','{&quot;97&quot;,&quot;97&quot;,&quot;97&quot;}','98',3),
+('1+98','{&quot;98&quot;,&quot;98&quot;,&quot;98&quot;}','99',3),
+('1+99','{&quot;99&quot;,&quot;99&quot;,&quot;99&quot;}','100',3),
+('1+100','{&quot;100&quot;,&quot;100&quot;,&quot;100&quot;}','101',1);
+
+
+--truy van mot cau hoi bat ky
+select * from questions offset random() * (select count(*) from questions) limit 1;
+
+--json ????
+
+select row_to_json(row) from (select * from questions offset random() * (select count(*) from questions) limit 1) row;
+
+-- Hãy cập nhật thông tin bảng với yêu cầu mới thêm
+ALTER TABLE questions ADD COLUMN description text;
+
+--Truy vấn số lượng câu hỏi theo mỗi mức độ khó để kiểm tra số lượng
+
+câu hỏi cho mỗi mức độ khó đã bằng nhau chưa:
+select count(*) from questions where topic_id = 1;
+select count(*) from questions where topic_id = 2;
+select count(*) from questions where topic_id = 3;
+
+
+--Truy vấn lấy ngẫu nhiên được 1 câu hỏi thuộc mức độ Dễ (Trung
+
+bình, Khó):
+select * from questions where topic_id = 1 or topic_id = 2 or topic_id = 3 offset random() * (select count(*) from questions where topic_id = 1) limit 1;
+
+
+--Truy vấn lấy ra ngẫu nhiên 15 câu hỏi và sắp xếp theo thứ tự độ khó
+
+tăng dần (mỗi độ khó có 5 câu hỏi sử dụng UNION):
+(select * from questions where topic_id = 1 order by random() limit 5) union all
+(select * from questions where topic_id = 2 order by random() limit 5) union all
+(select * from questions where topic_id = 3 order by random() limit 5);
+
+-- Nhập dữ liệu cấu hình cho game
+
+
+insert into level_money (level_mon) values
+(800),
+(1000),
+(1200),
+(1500),
+(2000),
+
+(2500),
+(3000),
+(3500),
+(4000),
+(4500),
+
+(5000),
+(5500),
+(6000),
+(6500),
+(7000);
+
+-- Truy vấn lấy được ngẫu nhiên 2 trong số 4 đáp án của 1 câu hỏi bất
+
+kỳ, trong đó bắt buộc phải chứa đáp án đúng:
+
+create or replace function trogiup5050 (id integer) returns table(idd character varying(50), wrongans character varying(50)) as
+$body$
+begin
+return query
+select q.true_ans, q.wrong_ans[trunc(3*random()) + 1] from questions as q where q.question_id = id;
+end;
+$body$
+LANGUAGE plpgsql;
+select trogiup5050(15);
+
+
+-- Nhập dữ liệu mẫu 100 người chơi:
+insert into user_id (user_name, time_play, score) values
+('le a','1','1'),
+('le b','2','2'),
+('le c','3','3'),
+('le d','4','4'),
+('le e','4','5'),
+('le f','4','6'),
+('le g','4','7'),
+('le h','4','8'),
+('le i','4','9'),
+('le k','4','10'),
+
+('le l','5','11'),
+('le m','6','12'),
+('le n','7','13'),
+('le o','8','14'),
+('le p','9','15'),
+('le v','9','16'),
+('le r','9','17'),
+('le s','9','38'),
+('le t','9','19'),
+('le u','9','12'),
+
+('le v','10','145'),
+('le w','20','123'),
+('le x','10','34'),
+('le w','18','1643'),
+('le x','28','1345'),
+('le A','18','124'),
+('le B','28','1456'),
+('le C','18','324'),
+('le D','17','1547'),
+('le E','26','123'),
+
+('le F','14','1435'),
+('le J','24','156'),
+('le H','14','3534'),
+('le I','14','12'),
+('le J','24','145'),
+('le K','14','1546'),
+('le L','24','13'),
+('le M','14','35'),
+('le N','13','1345'),
+('le O','22','1346'),
+
+('le P','15','134'),
+('le V','26','156'),
+('le R','17','3345'),
+('le S','18','12'),
+('le T','25','15'),
+('le U','14','13'),
+('le V','23','14'),
+('le W','12','345'),
+('le X','12','15'),
+('le Y','24','145'),
+
+('le X','17','145'),
+('le AA','26','31'),
+('le BB','14','23'),
+('le CC','13','441'),
+('le DD','24','143'),
+('le FF','15','1435'),
+('le GG','26','156'),
+('le HH','17','37'),
+('le II','135','156'),
+('le JJ','23','145'),
+
+('le KK','13','135'),
+('le LL','23','15'),
+('le MM','13','33'),
+('le NN','13','15'),
+('le OO','23','145'),
+('le PP','13','12'),
+('le VV','23','154'),
+('le RR','13','365'),
+('le SS','13','14'),
+('le TT','23','13'),
+
+('le UU','12','12'),
+('le VV','28','13'),
+('le WW','18','345'),
+('le XX','18','156'),
+('le YY','28','1345'),
+('le ZZ','18','1645'),
+('le 1','28','1234'),
+('le 2','18','36'),
+('le 3','18','156'),
+('le 4','28','165'),
+
+('le 5','14','15'),
+('le 5','24','15'),
+('le 7','14','36'),
+('le 8','14','14'),
+('le 9','24','14'),
+('le 10','14','31'),
+('le 11','24','41'),
+('le 12','14','63'),
+('le 13','14','14'),
+('le 14','24','13'),
+
+('le 15','12','1'),
+('le 16','23','1'),
+('le 17','1','3'),
+('le 18','1','1'),
+('le 19','2','1'),
+('le 20','1','1'),
+('le 21','2','1'),
+('le 22','1','3'),
+('le 23','1','1'),
+('le 24','2','1');
+
+--Tìm kiếm câu hỏi theo id, theo từ khóa trong câu hỏi, theo từ khóa
+
+trong câu trả lời.
+CREATE OR REPLACE FUNCTION tim_da(IN chuoi character varying)
+RETURNS TABLE(question_id integer, question character varying, wrong_ans character varying[], true_ans character varying, topic_id integer) AS
+$BODY$
+begin
+return query 
+select
+q.question_id,
+q.question,
+q.wrong_ans,
+q.true_ans,
+q.topic_id
+from questions as q where (q.true_ans ilike concat('%',$1,'%') or q.wrong_ans[1] ilike concat('%',$1,'%') or
+q.wrong_ans[2] ilike concat('%',$1,'%') or q.wrong_ans[3] ilike concat('%',$1,'%') or q.question_id = chuoi::integer);
+
+end;
+$BODY$
+LANGUAGE plpgsql VOLATILE
+COST 100
+ROWS 1000;
+ALTER FUNCTION tim_da(character varying)
+OWNER TO postgres;
+
+--Xóa một câu hỏi:
+delete from questions as q where q.question_id = 100;
+ALTER SEQUENCE questions_question_id_seq RESTART;
+UPDATE questions SET question_id = DEFAULT;
+</code></pre>
+
+</div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/prettify-1.0.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script src="./js/base.js"></script>
+    </body>
+</html>
